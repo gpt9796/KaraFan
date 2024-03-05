@@ -43,12 +43,20 @@ def SDR(song_output_path, output_format, Gdrive, elapsed_time):
 
 	if not os.path.exists(MultiSong):  print ("No Multi-Song folder found !");  return
 	if not os.path.exists(instrum) or not os.path.exists(vocals):  print (f'No References Stems for "{song_name}" found !');  return
+	if output_format=='PCM_16':
+		ext = 'wav'
+	elif output_format=='FLOAT':
+		ext = 'wav'
+	elif output_format=='FLAC':
+		ext = 'flac'
+	elif output_format=='MP3':
+		ext = 'mp3'
+	# match output_format:
+	# 	case 'PCM_16':	ext = 'wav'
+	# 	case 'FLOAT':	ext = 'wav'
+	# 	case "FLAC":	ext = 'flac'
+	# 	case 'MP3':		ext = 'mp3'
 
-	match output_format:
-		case 'PCM_16':	ext = 'wav'
-		case 'FLOAT':	ext = 'wav'
-		case "FLAC":	ext = 'flac'
-		case 'MP3':		ext = 'mp3'
 
 	Extracted_files = glob.glob(os.path.join(song_output_path, '*.' + ext))
 
